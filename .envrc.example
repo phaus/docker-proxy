@@ -1,0 +1,5 @@
+
+# DOCKER_HOST (EnvOverrideHost) to set the URL to the docker server.
+# DOCKER_API_VERSION (EnvOverrideAPIVersion) to set the version of the API to use, leave empty for latest.
+# DOCKER_CERT_PATH (EnvOverrideCertPath) to specify the directory from which to load the TLS certificates ("ca.pem", "cert.pem", "key.pem').
+# DOCKER_TLS_VERIFY (EnvTLSVerify) to enable or disable TLS verification (off by default).
