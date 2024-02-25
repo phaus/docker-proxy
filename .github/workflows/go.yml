@@ -14,10 +14,10 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@4
+    - uses: actions/checkout@v4
 
     - name: Set up Go
-      uses: actions/setup-go@5
+      uses: actions/setup-go@v5
       with:
         go-version: '1.20'
 
@@ -31,15 +31,59 @@ jobs:
       with:
         name: proxy-linux
         path: proxy
-        retention-days: 5
+        retention-days: 14
 
-  build-mac:
+  build-mac-arm64:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@4
+    - uses: actions/checkout@v4
 
     - name: Set up Go
-      uses: actions/setup-go@5
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.20'
+
+    - name: Build
+      run: env GOARCH=arm64 go build -v ./...
+
+    - name: Test
+      run: go test -v ./...
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v4
+      with:
+        name: proxy-darwin-arm64
+        path: proxy
+        retention-days: 14
+
+  build-mac-amd64:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.20'
+
+    - name: Build
+      run: env GOARCH=amd64 go build -v ./...
+
+    - name: Test
+      run: go test -v ./...
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v4
+      with:
+        name: proxy-darwin-amd64
+        path: proxy
+        retention-days: 14
+
+  build-win:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
       with:
         go-version: '1.20'
 
@@ -51,6 +95,6 @@ jobs:
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v4
       with:
-        name: proxy-darwin
-        path: proxy
-        retention-days: 5
+        name: proxy-windows.exe
+        path: proxy.exe
+        retention-days: 14
