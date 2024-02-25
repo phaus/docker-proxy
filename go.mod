@@ -1,6 +1,6 @@
 module github.com/phaus/docker-proxy
 
-go 1.20.0
+go 1.20
 
 require (
 	github.com/docker/cli v25.0.3+incompatible
