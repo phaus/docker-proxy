@@ -26,7 +26,12 @@ jobs:
 
     - name: Test
       run: go test -v ./...
-
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v4
+      with:
+        name: proxy-linux
+        path: proxy
+        retention-days: 5
 
   build-mac:
     runs-on: macos-latest
@@ -43,3 +48,9 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v4
+      with:
+        name: proxy-darwin
+        path: proxy
+        retention-days: 5
