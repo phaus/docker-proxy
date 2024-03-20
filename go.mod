@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/docker/cli v25.0.3+incompatible
-	github.com/docker/docker v25.0.3+incompatible
+	github.com/docker/docker v25.0.5+incompatible
 )
 
 require (
